@@ -558,7 +558,7 @@ def ensure_tree_exists():
 
     # ---------------- QR GENERATION ----------------
     tree_ids = ["SPMVV - ORN - 01", "SPMVV - MED - 01", "SPMVV - ORN - 02", "SPMVV - ORN - 03", "SPMVV - ORN - 04", "SPMVV - FRT - 01", "SPMVV - FRT - 02", "SPMVV - FRT - 03","SPMVV - TIM - 01", "SPMVV - TIM - 02","SPMVV - MED - 02", "SPMVV - MED - 03", "SPMVV - TIM - 03", "SPMVV - MED - 04", "SPMVV - ORN - 05", "SPMVV - FRT - 04", "SPMVV - MED - 05", "SPMVV - TIM - 04", "SPMVV - MED - 06", "SPMVV - FRT - 05", "SPMVV - TIM - 05", "SPMVV - TIM - 06", "SPMVV - FRT - 06", "SPMVV - FRT - 07", "SPMVV - MED - 07"]
-    BASE_URL = os.environ.get("BASE_URL", "http://127.0.0.1:5000")
+    BASE_URL = "https://tree-aadhaar-e13a.onrender.com"
 
     for tree_id in tree_ids:
         qr_path = f"{QR_FOLDER}/{tree_id}.png"
