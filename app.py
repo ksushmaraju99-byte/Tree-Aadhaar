@@ -16,14 +16,11 @@ def get_db_connection():
     conn = sqlite3.connect('tree_aadhaar.db')
     conn.row_factory = sqlite3.Row
     return conn
-    
+
 # ---------------- CREATE DATABASE & TABLE ----------------
 def setup_database():
-    conn = get_mysql_connection()
+    conn = get_db_connection()
     cur = conn.cursor()
-
-    cur.execute("CREATE DATABASE IF NOT EXISTS tree_aadhar")
-    cur.execute("USE tree_aadhar")
 
     cur.execute("""
         CREATE TABLE IF NOT EXISTS trees (
@@ -44,27 +41,24 @@ def setup_database():
     conn.close()
 
 # ---------------- MYSQL CONNECTION (WITH DATABASE) ----------------
-def get_db_connection():
-    return mysql.connector.connect(
-        host="localhost",
-        user="root",
-        password=MYSQL_PASSWORD,
-        database="tree_aadhar"
-    )
 
+def get_db_connection():
+    conn = sqlite3.connect('tree_aadhaar.db')
+    conn.row_factory = sqlite3.Row
+    return conn
 # ---------------- INSERT TREE DATA ----------------
 def ensure_tree_exists():
     conn = get_db_connection()
     cur = conn.cursor()
 
     # 🌴 CARYOTA URENS
-    cur.execute("SELECT id FROM trees WHERE id=%s", ("SPMVV - ORN - 01",))
+    cur.execute("SELECT id FROM trees WHERE id=?", ("SPMVV - ORN - 01",))
     if not cur.fetchone():
         cur.execute("""
             INSERT INTO trees (
                 id, common_name, scientific_name, origin,
                 lifespan, location, address, benefits, image
-            ) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)
+            ) VALUES (?,?,?,?,?,?,?,?,?)
         """, (
             "SPMVV - ORN - 01",
             "Fishtail Palm",
@@ -78,13 +72,13 @@ def ensure_tree_exists():
         ))
 
     # 🌿 NEEM TREE
-    cur.execute("SELECT id FROM trees WHERE id=%s", ("SPMVV - MED - 01",))
+    cur.execute("SELECT id FROM trees WHERE id=?", ("SPMVV - MED - 01",))
     if not cur.fetchone():
         cur.execute("""
             INSERT INTO trees (
                 id, common_name, scientific_name, origin,
                 lifespan, location, address, benefits, image
-            ) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)
+            ) VALUES (?,?,?,?,?,?,?,?,?)
         """, (
             "SPMVV - MED - 01",
             "Neem",
@@ -98,13 +92,13 @@ def ensure_tree_exists():
         ))
 
         # 🌴 FOXTAIL PALM 
-    cur.execute("SELECT id FROM trees WHERE id=%s", ("SPMVV - ORN - 02",))
+    cur.execute("SELECT id FROM trees WHERE id=?", ("SPMVV - ORN - 02",))
     if not cur.fetchone():
         cur.execute("""
             INSERT INTO trees (
                 id, common_name, scientific_name, origin,
                 lifespan, location, address, benefits, image
-            ) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)
+            ) VALUES (?,?,?,?,?,?,?,?,?)
         """, (
             "SPMVV - ORN - 02",
             "Foxtail Palm",
@@ -118,13 +112,13 @@ def ensure_tree_exists():
         ))
 
         # 🌲 ARAUCARIACEAE TREE (NORFOLK ISLAND PINE)
-    cur.execute("SELECT id FROM trees WHERE id=%s", ("SPMVV - ORN - 03",))
+    cur.execute("SELECT id FROM trees WHERE id=?", ("SPMVV - ORN - 03",))
     if not cur.fetchone():
         cur.execute("""
         INSERT INTO trees (
             id, common_name, scientific_name, origin,
             lifespan, location, address, benefits, image
-        ) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)
+        ) VALUES (?,?,?,?,?,?,?,?,?)
     """, (
         "SPMVV - ORN - 03",
         "Norfolk Island Pine",
@@ -138,13 +132,13 @@ def ensure_tree_exists():
     ))
 
     # 🌳 MONOON LONGIFOLIUM (ASHOKA TREE)
-    cur.execute("SELECT id FROM trees WHERE id=%s", ("SPMVV - ORN - 04",))
+    cur.execute("SELECT id FROM trees WHERE id=?", ("SPMVV - ORN - 04",))
     if not cur.fetchone():
         cur.execute("""
         INSERT INTO trees (
             id, common_name, scientific_name, origin,
             lifespan, location, address, benefits, image
-        ) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)
+        ) VALUES (?,?,?,?,?,?,?,?,?)
     """, (
         "SPMVV - ORN - 04",
         "Ashoka Tree",
@@ -158,13 +152,13 @@ def ensure_tree_exists():
     ))
 
     # 🌳 BADAM TREE
-    cur.execute("SELECT id FROM trees WHERE id=%s", ("SPMVV - FRT - 01",))
+    cur.execute("SELECT id FROM trees WHERE id=?", ("SPMVV - FRT - 01",))
     if not cur.fetchone():
         cur.execute("""
         INSERT INTO trees (
             id, common_name, scientific_name, origin,
             lifespan, location, address, benefits, image
-        ) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)
+        ) VALUES (?,?,?,?,?,?,?,?,?)
     """, (
         "SPMVV - FRT - 01",
         "Badam Tree",
@@ -178,13 +172,13 @@ def ensure_tree_exists():
     ))
 
     # 🌳 MANGO TREE
-    cur.execute("SELECT id FROM trees WHERE id=%s", ("SPMVV - FRT - 02",))
+    cur.execute("SELECT id FROM trees WHERE id=?", ("SPMVV - FRT - 02",))
     if not cur.fetchone():
         cur.execute("""
         INSERT INTO trees (
             id, common_name, scientific_name, origin,
             lifespan, location, address, benefits, image
-        ) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)
+        ) VALUES (?,?,?,?,?,?,?,?,?)
     """, (
         "SPMVV - FRT - 02",
         "Mango Tree",
@@ -198,13 +192,13 @@ def ensure_tree_exists():
     ))
 
     # 🌳 VELAGA TREE
-    cur.execute("SELECT id FROM trees WHERE id=%s", ("SPMVV - FRT - 03",))
+    cur.execute("SELECT id FROM trees WHERE id=?", ("SPMVV - FRT - 03",))
     if not cur.fetchone():
         cur.execute("""
         INSERT INTO trees (
             id, common_name, scientific_name, origin,
             lifespan, location, address, benefits, image
-        ) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)
+        ) VALUES (?,?,?,?,?,?,?,?,?)
     """, (
         "SPMVV - FRT - 03",
         "Velaga Tree",
@@ -218,13 +212,13 @@ def ensure_tree_exists():
     ))
 
     # 🌳 TEAK TREE
-    cur.execute("SELECT id FROM trees WHERE id=%s", ("SPMVV - TIM - 01",))
+    cur.execute("SELECT id FROM trees WHERE id=?", ("SPMVV - TIM - 01",))
     if not cur.fetchone():
         cur.execute("""
         INSERT INTO trees (
             id, common_name, scientific_name, origin,
             lifespan, location, address, benefits, image
-        ) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)
+        ) VALUES (?,?,?,?,?,?,?,?,?)
     """, (
         "SPMVV - TIM - 01",
         "Teak Tree",
@@ -238,13 +232,13 @@ def ensure_tree_exists():
     ))
 
     # 🌳 STERCULIA FOETIDA TREE
-    cur.execute("SELECT id FROM trees WHERE id=%s", ("SPMVV - TIM - 02",))
+    cur.execute("SELECT id FROM trees WHERE id=?", ("SPMVV - TIM - 02",))
     if not cur.fetchone():
         cur.execute("""
         INSERT INTO trees (
             id, common_name, scientific_name, origin,
             lifespan, location, address, benefits, image
-        ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
     """, (
         "SPMVV - TIM - 02",
         "Jungle Almond Tree",
@@ -258,13 +252,13 @@ def ensure_tree_exists():
     ))
 
     # 🌳 AMLA TREE
-    cur.execute("SELECT id FROM trees WHERE id=%s", ("SPMVV - MED - 02",))
+    cur.execute("SELECT id FROM trees WHERE id=?", ("SPMVV - MED - 02",))
     if not cur.fetchone():
         cur.execute("""
     INSERT INTO trees (
         id, common_name, scientific_name, origin,
         lifespan, location, address, benefits, image
-    ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
 """, (
     "SPMVV - MED - 02",
     "Amla Tree",
@@ -279,13 +273,13 @@ def ensure_tree_exists():
 
 
 # 🌳 BAKUL TREE
-    cur.execute("SELECT id FROM trees WHERE id=%s", ("SPMVV - MED - 03",))
+    cur.execute("SELECT id FROM trees WHERE id=?", ("SPMVV - MED - 03",))
     if not cur.fetchone():
         cur.execute("""
     INSERT INTO trees (
         id, common_name, scientific_name, origin,
         lifespan, location, address, benefits, image
-    ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
 """, (
     "SPMVV - MED - 03",
     "Bakul Tree",
@@ -299,13 +293,13 @@ def ensure_tree_exists():
 ))
 
 # 🌳 RED SANDALWOOD TREE
-    cur.execute("SELECT id FROM trees WHERE id=%s", ("SPMVV - TIM - 03",))
+    cur.execute("SELECT id FROM trees WHERE id=?", ("SPMVV - TIM - 03",))
     if not cur.fetchone():
         cur.execute("""
     INSERT INTO trees (
         id, common_name, scientific_name, origin,
         lifespan, location, address, benefits, image
-    ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
 """, (
     "SPMVV - TIM - 03",
     "Red Sandalwood Tree",
@@ -320,13 +314,13 @@ def ensure_tree_exists():
 
 
 # 🌳 PEEPAL TREE
-    cur.execute("SELECT id FROM trees WHERE id=%s", ("SPMVV - MED - 04",))
+    cur.execute("SELECT id FROM trees WHERE id=?", ("SPMVV - MED - 04",))
     if not cur.fetchone():
         cur.execute("""
         INSERT INTO trees (
             id, common_name, scientific_name, origin,
             lifespan, location, address, benefits, image
-        ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
     """, (
         "SPMVV - MED - 04",
         "Raavi Chettu",
@@ -340,13 +334,13 @@ def ensure_tree_exists():
 ))
 
 # 🌳 PLUMERIA ALBA TREE
-    cur.execute("SELECT id FROM trees WHERE id=%s", ("SPMVV - ORN - 05",))
+    cur.execute("SELECT id FROM trees WHERE id=?", ("SPMVV - ORN - 05",))
     if not cur.fetchone():
         cur.execute("""
     INSERT INTO trees (
         id, common_name, scientific_name, origin,
         lifespan, location, address, benefits, image
-    ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
 """, (
     "SPMVV - ORN - 05",
     "Deva Ganneru",
@@ -360,13 +354,13 @@ def ensure_tree_exists():
 ))
 
 # 🌳 PALMYRA PALM TREE
-    cur.execute("SELECT id FROM trees WHERE id=%s", ("SPMVV - FRT - 04",))
+    cur.execute("SELECT id FROM trees WHERE id=?", ("SPMVV - FRT - 04",))
     if not cur.fetchone():
         cur.execute("""
     INSERT INTO trees (
         id, common_name, scientific_name, origin,
         lifespan, location, address, benefits, image
-    ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
 """, (
     "SPMVV - FRT - 04",
     "Taati Chettu",
@@ -380,13 +374,13 @@ def ensure_tree_exists():
 ))
 
 # 🌳 JAMMI CHETTU
-    cur.execute("SELECT id FROM trees WHERE id=%s", ("SPMVV - MED - 05",))
+    cur.execute("SELECT id FROM trees WHERE id=?", ("SPMVV - MED - 05",))
     if not cur.fetchone():
         cur.execute("""
     INSERT INTO trees (
         id, common_name, scientific_name, origin,
         lifespan, location, address, benefits, image
-    ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
 """, (
     "SPMVV - MED - 05",
     "Jammi Chettu",
@@ -400,13 +394,13 @@ def ensure_tree_exists():
 ))
 
 # 🌳 BAMBOO TREE
-    cur.execute("SELECT id FROM trees WHERE id=%s", ("SPMVV - TIM - 04",))
+    cur.execute("SELECT id FROM trees WHERE id=?", ("SPMVV - TIM - 04",))
     if not cur.fetchone():
         cur.execute("""
     INSERT INTO trees (
         id, common_name, scientific_name, origin,
         lifespan, location, address, benefits, image
-    ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
 """, (
     "SPMVV - TIM - 04",
     "Veduru",
@@ -420,13 +414,13 @@ def ensure_tree_exists():
 ))
 
 # 🌳 MAHUA TREE
-    cur.execute("SELECT id FROM trees WHERE id=%s", ("SPMVV - MED - 06",))
+    cur.execute("SELECT id FROM trees WHERE id=?", ("SPMVV - MED - 06",))
     if not cur.fetchone():
         cur.execute("""
     INSERT INTO trees (
         id, common_name, scientific_name, origin,
         lifespan, location, address, benefits, image
-    ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
 """, (
     "SPMVV - MED - 06",
     "Ippa Chettu",
@@ -440,13 +434,13 @@ def ensure_tree_exists():
 ))
 
 # 🌳 TAMARIND TREE
-    cur.execute("SELECT id FROM trees WHERE id=%s", ("SPMVV - FRT - 05",))
+    cur.execute("SELECT id FROM trees WHERE id=?", ("SPMVV - FRT - 05",))
     if not cur.fetchone():
         cur.execute("""
     INSERT INTO trees (
         id, common_name, scientific_name, origin,
         lifespan, location, address, benefits, image
-    ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
 """, (
     "SPMVV - FRT - 05",
     "Chintha Chettu",
@@ -460,13 +454,13 @@ def ensure_tree_exists():
 ))
 
 # 🌳 BANYAN TREE
-    cur.execute("SELECT id FROM trees WHERE id=%s", ("SPMVV - TIM - 05",))
+    cur.execute("SELECT id FROM trees WHERE id=?", ("SPMVV - TIM - 05",))
     if not cur.fetchone():
         cur.execute("""
     INSERT INTO trees (
         id, common_name, scientific_name, origin,
         lifespan, location, address, benefits, image
-    ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
 """, (
     "SPMVV - TIM - 05",
     "Marri Chettu",
@@ -480,13 +474,13 @@ def ensure_tree_exists():
 ))
 
 # 🌳 PRACAXI TREE
-    cur.execute("SELECT id FROM trees WHERE id=%s", ("SPMVV - TIM - 06",))
+    cur.execute("SELECT id FROM trees WHERE id=?", ("SPMVV - TIM - 06",))
     if not cur.fetchone():
         cur.execute("""
     INSERT INTO trees (
         id, common_name, scientific_name, origin,
         lifespan, location, address, benefits, image
-    ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
 """, (
     "SPMVV - TIM - 06",
     "Noone Vruksham",
@@ -500,13 +494,13 @@ def ensure_tree_exists():
 ))
 
 # 🌳 COCONUT TREE
-    cur.execute("SELECT id FROM trees WHERE id=%s", ("SPMVV - FRT - 06",))
+    cur.execute("SELECT id FROM trees WHERE id=?", ("SPMVV - FRT - 06",))
     if not cur.fetchone():
         cur.execute("""
     INSERT INTO trees (
         id, common_name, scientific_name, origin,
         lifespan, location, address, benefits, image
-    ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
 """, (
     "SPMVV - FRT - 06",
     "Kobbari Chettu",
@@ -520,13 +514,13 @@ def ensure_tree_exists():
 ))
 
 # 🌳 JAMUN TREE
-    cur.execute("SELECT id FROM trees WHERE id=%s", ("SPMVV - FRT - 07",))
+    cur.execute("SELECT id FROM trees WHERE id=?", ("SPMVV - FRT - 07",))
     if not cur.fetchone():
         cur.execute("""
     INSERT INTO trees (
         id, common_name, scientific_name, origin,
         lifespan, location, address, benefits, image
-    ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
 """, (
     "SPMVV - FRT - 07",
     "Neredu Chettu",
@@ -540,13 +534,13 @@ def ensure_tree_exists():
 ))
 
 # 🌳 KAPOK TREE
-    cur.execute("SELECT id FROM trees WHERE id=%s", ("SPMVV - MED - 07",))
+    cur.execute("SELECT id FROM trees WHERE id=?", ("SPMVV - MED - 07",))
     if not cur.fetchone():
         cur.execute("""
     INSERT INTO trees (
         id, common_name, scientific_name, origin,
         lifespan, location, address, benefits, image
-    ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
 """, (
     "SPMVV - MED - 07",
     "Booruga Chettu",
@@ -919,7 +913,7 @@ def home():
 def tree_card(tree_id):
     conn = get_db_connection()
     cur = conn.cursor()
-    cur.execute("SELECT * FROM trees WHERE id=%s", (tree_id,))
+    cur.execute("SELECT * FROM trees WHERE id=?", (tree_id,))
     tree = cur.fetchone()
     cur.close()
     conn.close()
