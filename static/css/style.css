@@ -1,0 +1,205 @@
+body {
+    background: linear-gradient(to right, #a5d6a7, #81c784, #66bb6a);
+    font-family: 'Segoe UI', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.card {
+    max-width: 95%;
+    width: 460px;
+    background: white;
+    margin: 30px auto;
+    padding: 20px;
+    border: 3px solid #2e7d32;
+    border-radius: 18px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+}
+
+/* Header */
+.header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: linear-gradient(to right, #617462, #475748);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.logo {
+    width: 130px;          /* bigger logo */
+    height: 130px;
+
+    object-fit: contain;   /* keeps full logo visible */
+    background: transparent;
+
+    border: none;          /* removes circle border */
+    border-radius: 0;      /* removes round frame */
+    padding: 0;
+    margin-right: 18px;
+}
+
+h1 {
+    text-align: center;
+    color: #1b5e20;
+    margin: 14px 0;
+    font-size: 28px;
+    text-shadow: 2px 2px 4px #a5d6a7;
+}
+
+/* Image + Details */
+.top-section {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+}
+
+.tree-img {
+    width: 40%;
+    max-height: 220px;
+    object-fit: cover;
+    border-radius: 12px;
+    border: 2px solid #43a047;
+}
+
+.details {
+    width: 60%;
+}
+
+.details p {
+    font-size: 14px;
+    margin: 6px 0;
+    color: #2e7d32;
+}
+
+/* Tree ID */
+.uid {
+    text-align: center;
+    font-weight: bold;
+    color: #2e7d32;
+    font-size: 16px;
+}
+
+/* Benefits + QR */
+.bottom-section {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+.benefits {
+    width: 65%;
+    background: #e8f5e9;
+    padding: 10px;
+    border-radius: 10px;
+    color: #268f2d;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.benefits ul {
+    padding-left: 18px;
+    margin: 6px 0 0;
+}
+
+.benefits li {
+    margin-bottom: 4px;
+}
+
+/* QR */
+.qr {
+    width: 120px;
+    border: 2px solid #2e7d32;
+    border-radius: 10px;
+    padding: 6px;
+    background: #f1f8e9;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Mobile Responsive */
+@media (max-width: 600px) {
+    .top-section,
+    .bottom-section {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .tree-img,
+    .details,
+    .benefits {
+        width: 100%;
+    }
+
+    .qr {
+        margin-top: 10px;
+    }
+}
+.benefits ul {
+    margin-top: 8px;
+    padding-left: 20px;
+}
+
+.benefits li {
+    margin-bottom: 6px;
+    font-size: 14px;
+    color: #1b5e20;
+}
+/* ===== OFFICIAL UNIVERSITY HEADER ===== */
+
+.uni-header {
+    display: flex;
+    align-items: center;
+    background: #d0f9d1;
+    padding: 14px 18px;
+    border-radius: 12px;
+    border: 2px solid #2e7d32;
+    margin-bottom: 10px;
+}
+
+.uni-logo {
+    width: 120px;        /* bigger logo */
+    height: 120px;
+    object-fit: contain;
+    margin-right: 18px;
+
+    background: transparent;
+    padding: 0;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.uni-text {
+    text-align: center;
+    flex: 1;
+    color: #1b5e20;
+}
+
+.center-title {
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.university-name {
+    font-size: 17px;
+    font-weight: 600;
+    margin-top: 3px;
+}
+
+.subtitle {
+    font-size: 13px;
+    margin-top: 2px;
+}
+
+.location {
+    font-size: 13px;
+}
+
+.main-title {
+    text-align: center;
+    color: #1b5e20;
+    margin: 12px 0 16px 0;
+    font-size: 26px;
+    text-shadow: 2px 2px 4px #a5d6a7;
+}

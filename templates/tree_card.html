@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tree Aadhaar</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/static/css/style.css">
+
+    <style>
+        /* ✅ Fix long link display */
+        .location-link {
+            word-break: break-all;
+            color: blue;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="card">
+
+    <!-- Header -->
+    <div class="uni-header">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" class="logo">
+
+        <div class="uni-text">
+            <div class="center-title">DST-CURIE-AI CENTRE</div>
+            <div class="university-name">
+                SRI PADMAVATI MAHILA VISVAVIDYALAYAM
+            </div>
+            <div class="subtitle">
+                Women's University - NAAC "A+" Grade, ISO 21001:2018
+            </div>
+            <div class="location">
+                Tirupati-517502, Andhra Pradesh, India
+            </div>
+        </div>
+    </div>
+
+    <h1 class="main-title">TREE AADHAAR</h1>
+
+    <!-- Image + Details -->
+    <div class="top-section">
+        <img src="{{ url_for('static', filename='images/' + tree[8]) }}" class="tree-img">
+
+        <div class="details">
+            <p><b>🌱 Scientific Name:</b> {{ tree[2] }}</p>
+            <p><b>🌳 Common Name:</b> {{ tree[1] }}</p>
+            <p><b>🌍 Origin:</b> {{ tree[3] }}</p>
+            <p><b>⏳ Lifespan:</b> {{ tree[4] }}</p>
+
+            <!-- ✅ FULL LINK DISPLAY FIXED -->
+            <p><b>📍 Location:</b></p>
+            <a href="{{ tree[5] }}" target="_blank" class="location-link">
+                {{ tree[5] }}
+            </a>
+
+            <p><b>🏫 Address:</b> {{ tree[6] }}</p>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- Tree ID -->
+    <p class="uid"><b>🆔 Tree ID:</b> {{ tree[0] }}</p>
+
+    <!-- Benefits + QR -->
+    <div class="bottom-section">
+
+        <div class="benefits">
+            <b>💚 Benefits:</b>
+            <ul>
+                {% for benefit in tree[7].split('\n') %}
+                    {% if benefit.strip() %}
+                        <li>{{ benefit }}</li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+
+        <!-- QR Code -->
+        <img src="{{ url_for('static', filename='qr/' + tree[0] + '.png') }}" class="qr">
+
+    </div>
+
+</div>
+
+</body>
+</html>
