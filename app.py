@@ -1,5 +1,5 @@
 from flask import Flask, render_template
-import mysql.connector
+import sqlite3
 import qrcode
 import os
 
@@ -12,13 +12,11 @@ QR_FOLDER = "static/qr"
 os.makedirs(QR_FOLDER, exist_ok=True)
 
 # ---------------- MYSQL CONNECTION (NO DATABASE) ----------------
-def get_mysql_connection():
-    return mysql.connector.connect(
-        host="localhost",
-        user="root",
-        password=MYSQL_PASSWORD
-    )
-
+def get_db_connection():
+    conn = sqlite3.connect('tree_aadhaar.db')
+    conn.row_factory = sqlite3.Row
+    return conn
+    
 # ---------------- CREATE DATABASE & TABLE ----------------
 def setup_database():
     conn = get_mysql_connection()
